@@ -99,3 +99,24 @@
 
 */
 
+import * as readline from 'node:readline/promises';
+import { stdin as input, stdout as output } from 'node:process';
+
+// Input for Algorithm A
+const rl = readline.createInterface({ input, output });
+
+let answer = await rl.question('Enter the answer: ');
+
+while (!answer.match(/^[a-öA-Ö]+$/g) || answer.length > 30) {
+    answer = await rl.question('The answer can only contains letters and must be shorter then 30 letters, please try again: ');
+}
+
+let guess = await rl.question('Enter the guess: ');
+
+while (!guess.match(/^[a-öA-Ö]+$/g) || guess.length != answer.length) {
+    guess = await rl.question(`Your guess has to be ${answer.length} letters long and only contain letters, please try again: `);
+}
+
+rl.close();
+
+console.log(`Your guess was ${guess} and the answer was ${answer}`)

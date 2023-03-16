@@ -62,7 +62,7 @@
                 om bokstaven finns med
                     kontrollera hur många gånger bokstaven finns i gissningen och i svaret
                     om det finns flera gånger i svaret eller lika många gånger som i svaret
-                        sätt objektet till I
+                        sätt objektet till M
                     annars (fler instanser av gissningsbokstaven i gissningen än i svaret)
                         kontrollera hur många av samma gissiningsbokstav är på samma plats som i svaret
                             om bokstaven är samma som vi letar efter
@@ -121,6 +121,6 @@ while (!guess.match(/^[a-öA-Ö]+$/g) || guess.length != answer.length) {
 
 rl.close();
 
-const result = checkGuess(guess.toUpperCase().split(''), answer.toUpperCase().split(''));
+const result = checkGuess(guess, answer);
 
 console.log(result);

@@ -85,6 +85,7 @@ describe("checkGuess()", () => {
 	it("Should return an array of objects that has the same letters as the input", () => {
 		for (let i = 0; i < TESTWORDS.length; i++) {
 			let result = checkGuess(TESTWORDS[i].guess, TESTWORDS[i].answer);
+			console.log(result);
 
 			for (let j = 0; j < TESTWORDS[i].guess.length; j++) {
 				expect(result[j].letter).toBe(TESTWORDS[i].result[j].letter);
@@ -106,7 +107,8 @@ describe("checkGuess()", () => {
 		for (let i = 0; i < TESTWORDS2.length; i++) {
 			let result = checkGuess(TESTWORDS2[i].guess, TESTWORDS2[i].answer);
 
-			for (let j= 0; j < TESTWORDS2.guess.length; j++) {
+			for (let j= 0; j < TESTWORDS2[i].guess.length; j++) {
+				//console.log(`i: ${i} - j:${j}. Result: ${result.json}`);
 				expect(result[j].result).toBe("incorrect");
 			}
 		}

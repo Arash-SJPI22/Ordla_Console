@@ -1,6 +1,16 @@
 /* 
     Teststrategi:
     Väljer att inte testa inputen för felaktigheter så som fellängd på gissning och annat än bokstäver p.g.a. av att jag kör Regex och för att jag good faith i den här uppgiften
+
+	Har skapat en array med mockdata där jag även inkluderat rätt svar som krävs.
+	Denna mockdata testar alla möjligt fall(förutom de fallen som beskrivs på rad 3) som krävs för att kontrollera om algoritmen A fungerar som den ska.
+	Jag har delat upp det i 4 tester för att enklare hitta felen.
+	Ett test för att kolla att resultatet från checkGuess() ger tillbaka samma bokstäver och rätt ordningen som gissningen
+	Ett test för att kolla att resultatet för alla bokstäver är correkt när gissning och svaret är samma
+	Ett test för att kolla att resultatet för alla bokstäver är incorrekt när alla bokstäver i gissning och svaret är olika
+	Ett test för att kolla att resultatet blir samma som min mockdata efter att den gått igenom checkGuess()
+
+
 */
 
 import { describe, expect, it } from "@jest/globals";
@@ -73,46 +83,59 @@ const TESTWORDS = [
 			{ letter: "L", result: "incorrect" },
 		],
 	},
+	{
+		guess: "kamel",
+		answer: "KAMEL",
+		result: [
+			{ letter: "K", result: "correct" },
+			{ letter: "A", result: "correct" },
+			{ letter: "M", result: "correct" },
+			{ letter: "E", result: "correct" },
+			{ letter: "L", result: "correct" },
+		],
+	},
 ];
 
-const TESTWORDS2 = [
+// Testobjects som bara ska resultera i incorrect
+const TESTWORDSINCORRECT = [
 	{ guess: "gate", answer: "oooo" },
 	{ guess: "llll", answer: "aaaa" },
 	{ guess: "linux", answer: "eokfv" },
 ];
 
+// Testobjects som bara ska resultera i correct
+const TESTWORDSCORRECT = ["HAND", "SKOKLÄMMA", "JAGÄRENBÄVER"];
+
 describe("checkGuess()", () => {
 	it("Should return an array of objects that has the same letters as the input", () => {
 		for (let i = 0; i < TESTWORDS.length; i++) {
 			let result = checkGuess(TESTWORDS[i].guess, TESTWORDS[i].answer);
-			console.log(result);
 
 			for (let j = 0; j < TESTWORDS[i].guess.length; j++) {
-				expect(result[j].letter).toBe(TESTWORDS[i].result[j].letter);
+				expect(result[j].letter).toBe(TESTWORDS[i].guess[j].toUpperCase());
+				//result[j].letter
 			}
 		}
 	});
 
 	it('Should return an array of objects that has "correct" as result for each letter', () => {
-		for (let i = 0; i < TESTWORDS.length; i++) {
-			let result = checkGuess(TESTWORDS[i].guess, TESTWORDS[i].answer);
+		for (let i = 0; i < TESTWORDSCORRECT.length; i++) {
+			let result = checkGuess(TESTWORDSCORRECT[i], TESTWORDSCORRECT[i]);
 
-			for (let j = 0; j < TESTWORDS[i].guess.length; j++) {
-				expect(result[j].result).toBe(TESTWORDS[i].result[j].result);
+			for (let j = 0; j < TESTWORDSCORRECT[i]; j++) {
+				expect(result[j].result).toBe("correct");
 			}
 		}
 	});
 
 	it('Should return an array of objects that has "incorrect" as result for each letter', () => {
-		for (let i = 0; i < TESTWORDS2.length; i++) {
-			let result = checkGuess(TESTWORDS2[i].guess, TESTWORDS2[i].answer);
+		for (let i = 0; i < TESTWORDSINCORRECT.length; i++) {
+			let result = checkGuess(TESTWORDSINCORRECT[i].guess, TESTWORDSINCORRECT[i].answer);
 
-			for (let j= 0; j < TESTWORDS2[i].guess.length; j++) {
-				//console.log(`i: ${i} - j:${j}. Result: ${result.json}`);
+			for (let j = 0; j < TESTWORDSINCORRECT[i].guess.length; j++) {
 				expect(result[j].result).toBe("incorrect");
 			}
 		}
-
 	});
 
 	it("Should return an array of objects that has the right result for each word", () => {
@@ -123,6 +146,5 @@ describe("checkGuess()", () => {
 				expect(result[j].result).toBe(TESTWORDS[i].result[j].result);
 			}
 		}
-
 	});
 });

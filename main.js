@@ -101,6 +101,8 @@
 
 import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
+import checkGuess from "./js/checkGuess.js";
+
 
 // Input for Algorithm A
 const rl = readline.createInterface({ input, output });
@@ -119,4 +121,6 @@ while (!guess.match(/^[a-öA-Ö]+$/g) || guess.length != answer.length) {
 
 rl.close();
 
-console.log(`Your guess was ${guess} and the answer was ${answer}`)
+const result = checkGuess(guess.toUpperCase().split(''), answer.toUpperCase().split(''));
+
+console.log(result);

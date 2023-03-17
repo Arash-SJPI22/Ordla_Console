@@ -50,8 +50,9 @@ const WORDLISTS = [
 describe("wordList()", () => {
 	it("Should return word with a specifik length", () => {
 		for (let i = 1; i < 9; i++) {
-			let result = wordList(WORDLISTS, i, false);
-
+			
+            let result = wordList(WORDLISTS, i, false);
+            
 			expect(result.length).toBe(i);
 		}
 	});
@@ -64,6 +65,7 @@ describe("wordList()", () => {
 			let slicedWord = "";
 
 			for (let j = 0; j < result.length; j++) {
+                
 				if (j < result.length - 1) {
 					slicedWord = result.slice(j + 1);
 
@@ -78,7 +80,9 @@ describe("wordList()", () => {
 	});
 
     it("Should return false because no words matched the criteria", () => {
+
         for (let i=0; i<7; i++) {
+
             const result = wordList(WORDLISTS, (i+10), true);
 
             expect(result).toBe(false);

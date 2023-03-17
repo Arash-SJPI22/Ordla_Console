@@ -1,5 +1,8 @@
 export default function wordList(list, length, unique) {
-	list = list.map((word) => word.toUpperCase());
+	// If implemented against a large list, move this to only make the selected word uppercase and return it.
+    // And change place of removeNonMatchingLength and removeNonUnique to optimize 
+        
+    list = list.map((word) => word.toUpperCase());
 	
     // Removes all the unique words from the list
 	if (unique) removeNonUnique(list);

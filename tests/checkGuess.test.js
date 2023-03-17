@@ -1,6 +1,6 @@
 /* 
     Teststrategi:
-    Väljer att inte testa inputen för felaktigheter så som fellängd på gissning och annat än bokstäver p.g.a. av att jag kör Regex och för att jag good faith i den här uppgiften
+    Väljer att inte testa inputen för felaktigheter så som fel längd på gissning, uppercase vs lowercase och annat än bokstäver p.g.a. av att det är redan kontrollerat vid inputen
 
 	Har skapat en array med mockdata där jag även inkluderat rätt svar som krävs.
 	Denna mockdata testar alla möjligt fall(förutom de fallen som beskrivs på rad 3) som krävs för att kontrollera om algoritmen A fungerar som den ska.
@@ -129,7 +129,6 @@ describe("checkGuess()", () => {
 
 			for (let j = 0; j < TESTWORDS[i].guess.length; j++) {
 				expect(result[j].letter).toBe(TESTWORDS[i].guess[j].toUpperCase());
-				//result[j].letter
 			}
 		}
 	});
@@ -154,7 +153,7 @@ describe("checkGuess()", () => {
 		}
 	});
 
-	it("Should return an array of objects that has the right result for each word", () => {
+	it("Should return an object that has the same result for each letter as the result for the same letters in the mockdata", () => {
 		for (let i = 0; i < TESTWORDS.length; i++) {
 			let result = checkGuess(TESTWORDS[i].guess, TESTWORDS[i].answer);
 

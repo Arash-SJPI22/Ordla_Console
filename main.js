@@ -17,11 +17,9 @@ const BACKUPLIST = [
 
 const rl = readline.createInterface({ input, output });
 
-const answer = [];
-let proceed = "N";
-
-
 // Get one Answer
+const answer = [];
+
 let str = await rl.question('Enter the answer: ');
 
 while(!str.match(/^[a-öA-Ö]+$/g) || str.length > 30) {
@@ -32,6 +30,8 @@ answer.push(str);
 
 
 // Enter more answers ?
+let proceed = "N";
+
 do {
     proceed = await rl.question('Would you like to enter another answer (Y/N): ');
 

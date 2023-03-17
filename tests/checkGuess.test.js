@@ -5,10 +5,11 @@
 	Har skapat en array med mockdata där jag även inkluderat rätt svar som krävs.
 	Denna mockdata testar alla möjligt fall(förutom de fallen som beskrivs på rad 3) som krävs för att kontrollera om algoritmen A fungerar som den ska.
 	Jag har delat upp det i 4 tester för att enklare hitta felen.
-	Ett test för att kolla att resultatet från checkGuess() ger tillbaka samma bokstäver och rätt ordningen som gissningen
-	Ett test för att kolla att resultatet för alla bokstäver är correkt när gissning och svaret är samma
-	Ett test för att kolla att resultatet för alla bokstäver är incorrekt när alla bokstäver i gissning och svaret är olika
-	Ett test för att kolla att resultatet blir samma som min mockdata efter att den gått igenom checkGuess()
+		
+		Ett test för att kolla att resultatet från checkGuess() ger tillbaka samma bokstäver och rätt ordningen som gissningen
+		Ett test för att kolla att resultatet för alla bokstäver är correkt när gissning och svaret är samma
+		Ett test för att kolla att resultatet för alla bokstäver är incorrekt när alla bokstäver i gissning och svaret är olika
+		Ett test för att kolla att resultatet blir samma som min mockdata efter att den gått igenom checkGuess()
 
 
 */
@@ -92,6 +93,21 @@ const TESTWORDS = [
 			{ letter: "M", result: "correct" },
 			{ letter: "E", result: "correct" },
 			{ letter: "L", result: "correct" },
+		],
+	},
+	{
+		guess: "analallaa",
+		answer: "analkanal",
+		result: [
+			{ letter: "A", result: "correct" },
+			{ letter: "N", result: "correct" },
+			{ letter: "A", result: "correct" },
+			{ letter: "L", result: "correct" },
+			{ letter: "A", result: "misplaced" },
+			{ letter: "L", result: "misplaced" },
+			{ letter: "L", result: "incorrect" },
+			{ letter: "A", result: "correct" },
+			{ letter: "A", result: "incorrect" },
 		],
 	},
 ];

@@ -1,5 +1,3 @@
-import { application } from "express";
-
 export default function checkGuess(guess, answer) {
 	guess = guess.toUpperCase().split("");
 	answer = answer.toUpperCase().split("");
